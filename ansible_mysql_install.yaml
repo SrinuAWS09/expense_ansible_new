@@ -5,16 +5,27 @@
     root_password: ExpenseApp@1
     hosts: mysql.daws82srinu.online
   tasks:
-  - name: mysql installation
+  - name: Install MySQL/MariaDB server
     ansible.builtin.package:
-      name: mysql
+      name: "{{ 'mysql-server' if ansible_os_family == 'Debian' else 'mariadb105-server' }}"
       state: present
 
-  - name: start my mysql server
+  - name: Start MySQL/MariaDB service
     ansible.builtin.service:
-      name: mariadb
+      name: "{{ 'mysql' if ansible_os_family == 'Debian' else 'mariadb' }}"
       state: started
-      enabled: yes
+      enabled: true
+
+  # - name: mysql installation
+  #   ansible.builtin.package:
+  #     name: mysql
+  #     state: present
+
+  # - name: start my mysql server
+  #   ansible.builtin.service:
+  #     name: mariadb
+  #     state: started
+  #     enabled: yes
     
   # - name: connect my sql server
   #   community.mysql.mysql_info:
