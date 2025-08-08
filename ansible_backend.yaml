@@ -2,11 +2,11 @@
   hosts: backend
   become: yes
   tasks:
-  - name: steps of mysql
+  - name: disable
     ansible.builtin.command: dnf module disable nodejs -y
 
-  - name: enable nodejs
-    ansible.builtin.command: dnf moduel enable nodejs:20 -y
+  - name: enable 
+    ansible.builtin.command: dnf module enable nodejs:20 -y
 
   - name: install nodejs
     ansible.builtin.package:
