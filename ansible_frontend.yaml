@@ -19,7 +19,7 @@
       state: absent
 
   - name: create html directory
-    ansible.builtn.file:
+    ansible.builtin.file:
       path: /user/share/nginx/html
       state: directory
 
