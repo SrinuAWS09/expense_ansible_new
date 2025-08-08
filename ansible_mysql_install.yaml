@@ -16,25 +16,25 @@
   #     state: started
   #     enabled: true
 
-  - name: mysql installation
-    ansible.builtin.package:
-      name: mysql
-      state: present
+    - name: mysql installation
+      ansible.builtin.package:
+        name: mysql
+        state: present
 
-  - name: start my mysql server
-    ansible.builtin.service:
-      name: mysqld
-      state: started
-      enabled: yes
+    - name: start my mysql server
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+        enabled: yes
     
-  - name: connect my sql server
-    community.mysql.mysql_info:
-      login_user: root
-      login_password: "{{ root_password }}"
-      login_host: "{{ host }}"
-    ignore_errors: true
-    register: mysql_info
+    - name: connect my sql server
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: "{{ root_password }}"
+        login_host: "{{ host }}"
+      ignore_errors: true
+      register: mysql_info
 
-  - name: mysql_info print
-    ansible.builtin.debug:
+    - name: mysql_info print
+      ansible.builtin.debug:
       msg: "{{ mysql_info }}"
