@@ -5,8 +5,8 @@
     root_password: ExpenseApp@1
     host: mysql.daws82srinu.online
   tasks:
-    - name: install software
-      anisble.builtin.pip:
+    - name: ansible to install software
+      ansible.builtin.pip:
         name: 
         - PyMySQL
         executable: pip3.9
