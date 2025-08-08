@@ -5,6 +5,11 @@
     root_password: ExpenseApp@1
     host: mysql.daws82srinu.online
   tasks:
+    - name: install software
+      anisble.builtin.pip:
+        name: 
+        - PyMySQL
+        executable: pip3.9
   # - name: Install MySQL/MariaDB server
   #   ansible.builtin.package:
   #     name: "{{ 'mysql-server' if ansible_os_family == 'Debian' else 'mariadb105-server' }}"
