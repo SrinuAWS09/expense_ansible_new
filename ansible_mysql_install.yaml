@@ -10,11 +10,11 @@
       name: mysql
       state: present
 
-  # - name: start my mysql server
-  #   ansible.builtin.service:
-  #     name: mysqld
-  #     state: started
-  #     enabled: yes
+  - name: start my mysql server
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
     
   # - name: connect my sql server
   #   community.mysql.mysql_info:
