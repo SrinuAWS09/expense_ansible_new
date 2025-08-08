@@ -12,7 +12,7 @@
 
   - name: start my mysql server
     ansible.builtin.service:
-      name: mysqld
+      name: mariadb
       state: started
       enabled: yes
     
