@@ -21,7 +21,6 @@
       login_user: root
       login_password: "{{ root_password }}"
       host: "{{ host }}"
-
     register: mysql_info
 
   - name: mysql_info print
