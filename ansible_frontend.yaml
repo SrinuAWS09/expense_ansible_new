@@ -19,7 +19,7 @@
       state: absent
 
   - name: create html directory
-    ansible.butiltin.file:
+    ansible.buitlin.file:
       path: /user/share/nginx/html
       state: directory
 
@@ -35,12 +35,12 @@
       remote_src: yes
 
   - name: copy extract data
-    ansible.butiltin.copy:
+    ansible.builtin.copy:
       src: expense.conf
       dest: /etc/nginx/default.d/expense.conf
 
   - name: restart nginx
-    ansible.butiltin.service:
+    ansible.builtin.service:
       name: nginx
       state: restarted
-      
+
