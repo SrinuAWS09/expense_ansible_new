@@ -1,6 +1,9 @@
 - name: backend steps
   hosts: backend
   become: yes
+  vars: 
+    root_password: ExpenseApp@1
+    host: mysql.daws82srinu.online
   tasks:
   - name: disable
     ansible.builtin.command: dnf module disable nodejs -y
@@ -10,9 +13,11 @@
 
   - name: install nodejs
     ansible.builtin.package:
-      name: nodejs
+      name: "{{ item }}"
       state: present
-
+    loop:
+    - nodejs
+    - mysql
   - name: user
     ansible.builtin.user:
       name: expense
@@ -32,3 +37,28 @@
       src: /tmp/backend.zip
       dest: /app
       remote_src: yes
+
+  - name: install dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
+
+  - name: copy backend service
+    ansible.builtin.copy:
+      src: backend.service
+      dest: /etc/systemd/system/backend.service
+
+  - name: ansible to install software
+    ansible.builtin.pip:
+      name: 
+      - PyMySQL
+      executable: pip3.9
+
+  - name: import mysql data 
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{ root_password }}"
+      login_host: "{{ host }}"
+      target: /app/schema/backend.sql
+      name: all 
+      state: dump
